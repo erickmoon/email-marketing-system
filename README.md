@@ -323,9 +323,9 @@ frontend/
 
 ### Scheduling Emails
 
-1. **Visit the Email Management Page**
-
-: Navigate to `/emails`. 2. **Fill in Email Details**: Enter the subject, body, recipients, and schedule time. 3. **Submit the Form**: Click "Schedule Email" to set up your email.
+1. **Visit the Email Management Page**: Navigate to `/emails`.
+2. **Fill in Email Details**: Enter the subject, body, recipients, and schedule time.
+3. **Submit the Form**: Click "Schedule Email" to set up your email.
 
 ### Configuring Settings
 

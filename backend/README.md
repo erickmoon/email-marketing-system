@@ -108,5 +108,3 @@ This directory contains the backend implementation for the email marketing syste
 - **API Documentation:** Refer to the API documentation for details on available endpoints and request formats.
 - **Authentication:** Use JWT for securing API routes. Ensure to include the JWT token in the `Authorization` header of requests.
 - **Error Handling:** Errors are managed through middleware and appropriate error messages are sent in responses.
-
-For detailed implementation and further customization, refer to the code in the respective files and folders.
