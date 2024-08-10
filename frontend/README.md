@@ -1,6 +1,6 @@
 # Email Marketing System - Frontend
 
-This document provides a comprehensive guide to setting up, configuring, and understanding the frontend of the Email Marketing System, which is built using React, Bootstrap, and CSS.
+This document provides a comprehensive guide to setting up, configuring, and understanding the frontend of the Email Marketing System, which is built using React and CSS.
 
 ## Table of Contents
 
@@ -16,11 +16,11 @@ This document provides a comprehensive guide to setting up, configuring, and und
 - **User Registration and Login**: Provides interfaces for users to register and log into the system.
 - **Email Scheduling**: Allows users to schedule and manage email campaigns.
 - **Settings Management**: Interface for configuring system settings, including SMTP configuration.
-- **Responsive Design**: Utilizes Bootstrap to ensure a responsive and user-friendly interface across various devices.
+- **Responsive Design**: Ensures a responsive and user-friendly interface across various devices.
 
 ## Technology Stack
 
-- **Frontend**: React, Bootstrap, CSS
+- **Frontend**: React, CSS
 - **HTTP Requests**: Axios for making API requests
 - **State Management**: Context API for managing authentication state
 
@@ -38,11 +38,19 @@ This document provides a comprehensive guide to setting up, configuring, and und
 
 2. **Install Dependencies**
 
-   Use `npm` to install all required dependencies. This includes React, Bootstrap, and Axios among others.
+   Use `npm` to install all required dependencies. This includes React and Axios among others.
+
+   ```bash
+   npm install
+   ```
 
 3. **Start the Development Server**
 
    Launch the React development server using npm. This will start the application on a local server, typically accessible at `http://localhost:3000`.
+
+   ```bash
+   npm start
+   ```
 
 ## Configuration
 
@@ -51,9 +59,9 @@ This document provides a comprehensive guide to setting up, configuring, and und
 - **`.env` File**: Create a `.env` file in the `frontend` directory. This file contains environment-specific variables such as the base URL for API requests.
   - **`REACT_APP_API_URL`**: The URL for the backend API that the frontend will interact with.
 
-### Bootstrap Integration
+### CSS Integration
 
-- **Bootstrap Styles**: Bootstrap is included for styling and layout. Ensure that Bootstrap's CSS is imported into the main entry file (`src/index.js`).
+- **CSS Styles**: Custom styles are included in the `src/styles/` directory. Ensure that `index.css` is imported into the main entry file (`src/index.js`).
 
 ## Project Structure
 
@@ -67,22 +75,23 @@ frontend/
 │
 ├── src/                   # Source files
 │   ├── components/        # React components
-│   │   ├── Header.js      # Header component
+│   │   ├── EmailForm.js   # Email scheduling form component
 │   │   ├── Footer.js      # Footer component
-│   │   └── EmailForm.js   # Email scheduling form component
-│   ├── pages/             # React pages
-│   │   ├── HomePage.js    # Landing page
-│   │   ├── RegisterPage.js # Registration page
-│   │   ├── LoginPage.js   # Login page
-│   │   └── SettingsPage.js # Settings page
-│   ├── utils/             # Utility functions
-│   │   ├── auth.js        # Authentication utilities
-│   │   └── api.js         # API utilities
-│   ├── App.js             # Main App component
+│   │   └── Header.js      # Header component
+│   ├── context/           # Contexts for state management
+│   │   └── AuthContext.js # Authentication context
+│   ├── index.css          # Main stylesheet
 │   ├── index.js           # Entry point for React application
-│   └── styles/            # CSS styles
-│       ├── main.css       # Main stylesheet
-│       └── bootstrap.min.css # Bootstrap stylesheet
+│   ├── pages/             # React pages
+│   │   ├── EmailPage.js   # Email scheduling and management page
+│   │   ├── HomePage.js    # Landing page
+│   │   ├── LoginPage.js   # Login page
+│   │   ├── RegisterPage.js # Registration page
+│   │   └── SettingsPage.js # Settings page
+│   ├── reportWebVitals.js # For measuring performance
+│   ├── setupTests.js      # Setup for testing
+│   └── utils/             # Utility functions
+│       └── auth.js        # Authentication utilities
 │
 ├── .env                   # Environment variables
 ├── package.json           # Project dependencies and scripts
@@ -95,39 +104,35 @@ frontend/
 
 ### `src/`
 
-- **`components/`**: This directory contains reusable React components that make up parts of the UI.
+- **`components/`**: Contains reusable React components that make up parts of the UI.
 
   - **`Header.js`**: Contains the navigation bar or header of the application. It usually includes links to various pages and may display user-related information.
 
   - **`Footer.js`**: Contains the footer section of the application, which may include copyright information and additional links.
 
-  - **`EmailForm.js`**: A form component for scheduling emails. It typically includes input fields for email subject, body, recipient list, and scheduling options.
+  - **`EmailForm.js`**: A form component for scheduling emails. It includes input fields for email subject, body, recipient list, and scheduling options.
 
-- **`pages/`**: This directory includes the main pages or views of the application.
+- **`context/`**: Contains Context API files for managing global state.
+
+  - **`AuthContext.js`**: Provides context for authentication state and functions.
+
+- **`pages/`**: Includes the main pages or views of the application.
 
   - **`HomePage.js`**: The landing page of the application. It may include an introduction to the app and links to other pages.
 
   - **`RegisterPage.js`**: The registration page where new users can create an account. It includes form fields for user details and organization information.
 
-  - **`LoginPage.js`**: The login page where users can enter their credentials to access the system. It usually includes fields for email and password.
+  - **`LoginPage.js`**: The login page where users can enter their credentials to access the system. It includes fields for email and password.
 
   - **`SettingsPage.js`**: A page for managing system settings. This may include forms for configuring SMTP settings and other application-specific options.
 
 - **`utils/`**: Contains utility functions used across the application.
 
-  - **`auth.js`**: Provides functions for managing authentication tokens, such as saving tokens to local storage and checking if a user is authenticated.
-
-  - **`api.js`**: Contains functions for making HTTP requests to the backend API using Axios. It handles API endpoints for user registration, login, email scheduling, and settings management.
-
-- **`App.js`**: The root component of the React application. It sets up the main application structure, including routing between different pages using React Router.
+  - **`auth.js`**: Functions for managing authentication tokens, such as saving tokens to local storage and checking if a user is authenticated.
 
 - **`index.js`**: The entry point for the React application. It renders the `App` component into the `root` div in `index.html`.
 
-- **`styles/`**: Contains CSS files for styling the application.
-
-  - **`main.css`**: The main stylesheet for custom styles specific to the application.
-
-  - **`bootstrap.min.css`**: The Bootstrap stylesheet for styling components using Bootstrap’s CSS framework.
+- **`index.css`**: The main stylesheet for custom styles specific to the application.
 
 ## Usage
 
@@ -154,5 +159,3 @@ frontend/
 ### Utilities
 
 - **auth.js**: Functions in this file manage authentication-related tasks, such as storing and retrieving JWT tokens from local storage and checking user authentication status.
-
-- **api.js**: Provides functions for making API calls. This file abstracts the details of making HTTP requests and provides a simple interface for interacting with the backend API.

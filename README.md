@@ -1,3 +1,7 @@
+Here's the updated combined documentation for the Email Marketing System:
+
+---
+
 # Email Marketing System
 
 A comprehensive email marketing system designed to handle bulk email campaigns efficiently. With features including user management, email scheduling, and SMTP configuration, this system can handle up to 100,000 emails. Built with Node.js, React, and PostgreSQL.
@@ -12,13 +16,12 @@ A comprehensive email marketing system designed to handle bulk email campaigns e
 6. [API Documentation](#api-documentation)
 7. [Frontend Documentation](#frontend-documentation)
 8. [User Guide](#user-guide)
-9. [Contributing](#contributing)
-10. [License](#license)
+9. [License](#license)
 
 ## Features
 
 - **User Authentication**: Register, login, and manage users with role-based permissions.
-- **Email Scheduling**: Schedule emails to be sent at a specific time and cancel scheduled emails.
+- **Email Scheduling**: Schedule emails to be sent at specific times and cancel scheduled emails.
 - **Mailing List Management**: Create, import, and manage mailing lists.
 - **Unsubscribe Functionality**: Allow recipients to unsubscribe from mailing lists.
 - **Email Sending**: Send emails to individuals, groups, or entire mailing lists, respecting unsubscribe preferences.
@@ -324,41 +327,17 @@ frontend/
 
 ### Scheduling Emails
 
-1. **Visit the
+1. **Visit the Email Management Page**
 
- Email Management Page**: Navigate to `/emails`.
-2. **Fill in the Email Details**: Enter the subject, body, and recipients of the email.
-3. **Set the Scheduled Time**: Specify when the email should be sent.
-4. **Submit the Form**: Click "Schedule Email" to add it to the queue.
+: Navigate to `/emails`. 2. **Fill in Email Details**: Enter the subject, body, recipients, and schedule time. 3. **Submit the Form**: Click "Schedule Email" to set up your email.
 
-### Managing Mailing Lists
-
-1. **Visit the Mailing List Page**: Navigate to `/mailing-lists`.
-2. **Create or Import Lists**: Add new mailing lists or import existing ones.
-3. **Manage Subscriptions**: View and update subscriber information.
-
-### Settings
+### Configuring Settings
 
 1. **Visit the Settings Page**: Navigate to `/settings`.
-2. **Update SMTP and System Settings**: Adjust SMTP configuration, system name, and email limits.
-3. **Save Changes**: Click "Save Settings" to apply your updates.
-
-### Unsubscribe
-
-1. **Access Unsubscribe Link**: Find the unsubscribe link in the email footer.
-2. **Follow the Link**: Click the link to be removed from the mailing list.
-
-## Contributing
-
-If you would like to contribute to this project, please follow these guidelines:
-
-1. **Fork the Repository**: Create a fork of the repository on GitHub.
-2. **Clone Your Fork**: Clone your fork to your local machine.
-3. **Create a New Branch**: Create a new branch for your changes.
-4. **Make Your Changes**: Implement your changes or features.
-5. **Submit a Pull Request**: Push your changes and submit a pull request.
+2. **Update SMTP Settings**: Provide your SMTP server details.
+3. **Update Rate Limits**: Adjust the maximum number of emails sent per hour.
+4. **Save Changes**: Click "Save Settings" to apply updates.
 
 ## License
 
 See the [LICENSE](LICENSE) file for details.
-
