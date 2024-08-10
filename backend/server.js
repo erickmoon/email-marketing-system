@@ -25,6 +25,7 @@ app.use('/auth', require('./routes/authRoutes')); // Authentication routes
 app.use('/email', require('./routes/emailRoutes')); // Email routes
 app.use('/user', require('./routes/userRoutes')); // User routes
 app.use('/settings', require('./routes/settingsRoutes')); // Settings routes
+app.use('/organizations', require('./routes/organizationRoutes')); // Organization routes
 
 // Start the server and listen on the specified port
 const PORT = process.env.PORT || 5001;

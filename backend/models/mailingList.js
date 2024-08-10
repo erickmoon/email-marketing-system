@@ -1,16 +1,47 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db'); // Adjust the path as necessary
+const Organization = require('./Organization'); // Adjust the path as necessary
 
-// Define the schema for a Mailing List
-const MailingListSchema = new mongoose.Schema({
-    name: { type: String, required: true }, // Name of the mailing list
-    organization: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' }, // Reference to the organization the mailing list belongs to
-    contacts: [{ // Array of contacts in the mailing list
-        email: { type: String, required: true }, // Email of the contact
-        name: { type: String }, // Optional name of the contact
-        unsubscribed: { type: Boolean, default: false } // Flag to check if the contact has unsubscribed
-    }],
-    createdAt: { type: Date, default: Date.now } // Timestamp of mailing list creation
+const MailingList = sequelize.define('MailingList', {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
+}, {
+  timestamps: false, // Set to false if you don't want Sequelize to automatically manage createdAt and updatedAt
+  tableName: 'mailing_lists', // Ensure the table name matches the migration
 });
 
-// Create and export the Mailing List model
-module.exports = mongoose.model('MailingList', MailingListSchema);
+// Define associations
+MailingList.belongsTo(Organization, { foreignKey: 'organization', as: 'organizationDetails' });
+
+// Define the MailingListContact model for the contacts array
+const MailingListContact = sequelize.define('MailingListContact', {
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  name: {
+    type: DataTypes.STRING,
+  },
+  unsubscribed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  }
+}, {
+  timestamps: false,
+  tableName: 'mailing_list_contacts',
+});
+
+// Define associations
+MailingList.hasMany(MailingListContact, { foreignKey: 'mailingListId', as: 'contacts' });
+MailingListContact.belongsTo(MailingList, { foreignKey: 'mailingListId' });
+
+module.exports = {
+  MailingList,
+  MailingListContact,
+};

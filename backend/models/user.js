@@ -1,14 +1,36 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db'); // Adjust the path as necessary
+const Organization = require('./Organization'); // Adjust the path as necessary
 
-// Define the schema for a User
-const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true }, // Unique username for login
-    password: { type: String, required: true }, // Hashed password for security
-    email: { type: String, required: true, unique: true }, // Unique email address for communication
-    organization: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' }, // Reference to the organization the user belongs to
-    role: { type: String, enum: ['admin', 'user'], default: 'user' }, // User role with permissions (admin or regular user)
-    createdAt: { type: Date, default: Date.now } // Timestamp of user creation
+const User = sequelize.define('User', {
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  role: {
+    type: DataTypes.ENUM('admin', 'user'),
+    defaultValue: 'user',
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
+}, {
+  timestamps: false, // Set to false if you don't want Sequelize to automatically manage createdAt and updatedAt
+  tableName: 'users', // Ensure the table name matches the migration
 });
 
-// Create and export the User model
-module.exports = mongoose.model('User', UserSchema);
+// Define associations
+User.belongsTo(Organization, { foreignKey: 'organizationId', as: 'organization' });
+
+module.exports = User;
