@@ -8,10 +8,12 @@ A comprehensive email marketing system designed to handle bulk email campaigns e
 2. [Technology Stack](#technology-stack)
 3. [Installation](#installation)
 4. [Configuration](#configuration)
-5. [API Documentation](#api-documentation)
-6. [Frontend Documentation](#frontend-documentation)
-7. [User Guide](#user-guide)
-8. [License](#license)
+5. [Project Structure](#project-structure)
+6. [API Documentation](#api-documentation)
+7. [Frontend Documentation](#frontend-documentation)
+8. [User Guide](#user-guide)
+9. [Contributing](#contributing)
+10. [License](#license)
 
 ## Features
 
@@ -106,6 +108,83 @@ A comprehensive email marketing system designed to handle bulk email campaigns e
 
 - Ensure PostgreSQL is installed and running.
 - Create a database named `email_marketing` or adjust the `DATABASE_URL` in the `.env` file accordingly.
+
+## Project Structure
+
+### Backend
+
+The `backend` directory is organized as follows:
+
+```
+backend/
+│
+├── config/                # Configuration files
+│   ├── config.js          # Main configuration
+│   └── smtp.js            # SMTP configuration
+│
+├── controllers/           # Route handlers
+│   ├── authController.js  # Authentication related handlers
+│   ├── emailController.js # Email management handlers
+│   └── settingsController.js # Settings management handlers
+│
+├── models/                # Database models
+│   ├── user.js            # User model
+│   ├── email.js           # Email model
+│   └── mailingList.js     # Mailing list model
+│
+├── migrations/            # Database migrations
+│   └── migration-files    # Migration files
+│
+├── routes/                # API routes
+│   ├── authRoutes.js      # Authentication routes
+│   ├── emailRoutes.js     # Email management routes
+│   └── settingsRoutes.js  # Settings routes
+│
+├── middleware/            # Middleware functions
+│   └── authMiddleware.js  # Middleware for authentication
+│
+├── utils/                 # Utility functions
+│   ├── emailUtils.js      # Email-related utilities
+│   └── authUtils.js       # Authentication utilities
+│
+├── .env                   # Environment variables
+├── server.js              # Main server file
+└── package.json           # Project dependencies and scripts
+```
+
+### Frontend
+
+The `frontend` directory is organized as follows:
+
+```
+frontend/
+│
+├── public/                # Static files
+│   └── index.html         # Main HTML file
+│
+├── src/                   # Source files
+│   ├── components/        # React components
+│   │   ├── Header.js      # Header component
+│   │   ├── Footer.js      # Footer component
+│   │   └── EmailForm.js   # Email scheduling form component
+│   ├── pages/             # React pages
+│   │   ├── HomePage.js    # Landing page
+│   │   ├── RegisterPage.js # Registration page
+│   │   ├── LoginPage.js   # Login page
+│   │   └── SettingsPage.js # Settings page
+│   ├── utils/             # Utility functions
+│   │   ├── auth.js        # Authentication utilities
+│   │   └── api.js         # API utilities
+│   ├── App.js             # Main App component
+│   ├── index.js           # Entry point for React application
+│   └── styles/            # CSS styles
+│       ├── main.css       # Main stylesheet
+│       └── bootstrap.min.css # Bootstrap stylesheet
+│
+├── .env                   # Environment variables
+├── package.json           # Project dependencies and scripts
+└── README.md              # Project documentation
+```
 
 ## API Documentation
 
@@ -245,7 +324,9 @@ A comprehensive email marketing system designed to handle bulk email campaigns e
 
 ### Scheduling Emails
 
-1. **Visit the Email Management Page**: Navigate to `/emails`.
+1. **Visit the
+
+ Email Management Page**: Navigate to `/emails`.
 2. **Fill in the Email Details**: Enter the subject, body, and recipients of the email.
 3. **Set the Scheduled Time**: Specify when the email should be sent.
 4. **Submit the Form**: Click "Schedule Email" to add it to the queue.
@@ -267,6 +348,17 @@ A comprehensive email marketing system designed to handle bulk email campaigns e
 1. **Access Unsubscribe Link**: Find the unsubscribe link in the email footer.
 2. **Follow the Link**: Click the link to be removed from the mailing list.
 
+## Contributing
+
+If you would like to contribute to this project, please follow these guidelines:
+
+1. **Fork the Repository**: Create a fork of the repository on GitHub.
+2. **Clone Your Fork**: Clone your fork to your local machine.
+3. **Create a New Branch**: Create a new branch for your changes.
+4. **Make Your Changes**: Implement your changes or features.
+5. **Submit a Pull Request**: Push your changes and submit a pull request.
+
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+See the [LICENSE](LICENSE) file for details.
+

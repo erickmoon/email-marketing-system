@@ -1,0 +1,7 @@
+node_modules/
+
+npx create-react-app . --no-git
+npm install bootstrap react-router-dom axios
+mkdir -p src/components src/pages src/context src/utils
+touch src/components/{Header.js,Footer.js,EmailForm.js} src/pages/{HomePage.js,LoginPage.js,RegisterPage.js,EmailPage.js,SettingsPage.js} src/context/AuthContext.js src/utils/auth.js
+npm start
