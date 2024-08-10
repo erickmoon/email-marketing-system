@@ -1,7 +1,3 @@
-Here's the updated combined documentation for the Email Marketing System:
-
----
-
 # Email Marketing System
 
 A comprehensive email marketing system designed to handle bulk email campaigns efficiently. With features including user management, email scheduling, and SMTP configuration, this system can handle up to 100,000 emails. Built with Node.js, React, and PostgreSQL.
