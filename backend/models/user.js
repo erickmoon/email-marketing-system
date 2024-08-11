@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Adjust the path as necessary
-const Organization = require('./Organization'); // Adjust the path as necessary
+const sequelize = require('../config/db');  // Correct path to your Sequelize instance
 
 const User = sequelize.define('User', {
   username: {
@@ -17,6 +16,14 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true,
   },
+  organization_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'organizations',  // Table name
+      key: 'id',
+    },
+    allowNull: true,
+  },
   role: {
     type: DataTypes.ENUM('admin', 'user'),
     defaultValue: 'user',
@@ -25,12 +32,13 @@ const User = sequelize.define('User', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
 }, {
-  timestamps: false, // Set to false if you don't want Sequelize to automatically manage createdAt and updatedAt
-  tableName: 'users', // Ensure the table name matches the migration
+  timestamps: true,
+  tableName: 'users',
 });
-
-// Define associations
-User.belongsTo(Organization, { foreignKey: 'organizationId', as: 'organization' });
 
 module.exports = User;

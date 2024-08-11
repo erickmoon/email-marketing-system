@@ -16,6 +16,15 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users', // Table name
+          key: 'id', // Column name in the referenced table
+        },
+        onDelete: 'SET NULL', // Action when referenced row is deleted
+        allowNull: false, // Allow null if no organization is set
+      },
       organization_id: {
         type: Sequelize.INTEGER,
         references: {
@@ -34,23 +43,28 @@ module.exports = {
         onDelete: 'SET NULL', // Action when referenced row is deleted
         allowNull: true, // Allow null if no mailing list is set
       },
+      recipient_email: { // New column
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       status: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'scheduled',
       },
+      
       send_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW,
       },
     });

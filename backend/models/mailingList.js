@@ -1,47 +1,27 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Adjust the path as necessary
-const Organization = require('./Organization'); // Adjust the path as necessary
+const sequelize = require('../config/db'); // Adjust path as necessary
 
 const MailingList = sequelize.define('MailingList', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  organization_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'organizations', // Ensure this matches the table name
+      key: 'id',
+    },
+    onDelete: 'CASCADE',
+  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
 }, {
-  timestamps: false, // Set to false if you don't want Sequelize to automatically manage createdAt and updatedAt
-  tableName: 'mailing_lists', // Ensure the table name matches the migration
-});
-
-// Define associations
-MailingList.belongsTo(Organization, { foreignKey: 'organization', as: 'organizationDetails' });
-
-// Define the MailingListContact model for the contacts array
-const MailingListContact = sequelize.define('MailingListContact', {
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  name: {
-    type: DataTypes.STRING,
-  },
-  unsubscribed: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  }
-}, {
   timestamps: false,
-  tableName: 'mailing_list_contacts',
+  tableName: 'mailing_lists',
 });
 
-// Define associations
-MailingList.hasMany(MailingListContact, { foreignKey: 'mailingListId', as: 'contacts' });
-MailingListContact.belongsTo(MailingList, { foreignKey: 'mailingListId' });
-
-module.exports = {
-  MailingList,
-  MailingListContact,
-};
+module.exports = MailingList;

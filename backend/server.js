@@ -1,6 +1,5 @@
 // Load environment variables from .env file
 require('dotenv').config();
-
 // Import necessary modules and configurations
 const express = require('express'); // Express for creating the server
 const bodyParser = require('body-parser'); // Body-parser for parsing request bodies
@@ -8,6 +7,8 @@ const cors = require('cors'); // CORS middleware for handling cross-origin reque
 const sequelize = require('./config/db'); // Database connection
 const jwtConfig = require('./config/jwt'); // JWT configuration
 const smtpConfig = require('./config/smtp'); // SMTP configuration
+const emailScheduler = require('./utils/emailScheduler'); // Import the cron job file
+require('./models'); // This file should contain your models and associations
 
 // Create an instance of the Express application
 const app = express();
@@ -21,11 +22,11 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Import and use the route handlers from the controllers
-app.use('/auth', require('./routes/authRoutes')); // Authentication routes
-app.use('/email', require('./routes/emailRoutes')); // Email routes
-app.use('/user', require('./routes/userRoutes')); // User routes
-app.use('/settings', require('./routes/settingsRoutes')); // Settings routes
-app.use('/organizations', require('./routes/organizationRoutes')); // Organization routes
+app.use('/api/auth', require('./routes/authRoutes')); // Authentication routes
+app.use('/api/email', require('./routes/emailRoutes')); // Email routes
+app.use('/api/mailing-lists', require('./routes/mailingListRoutes.js')); // Mailing list routes
+app.use('/api/user', require('./routes/userRoutes')); // User routes
+app.use('/api/organizations', require('./routes/organizationRoutes')); // Organization routes
 
 // Start the server and listen on the specified port
 const PORT = process.env.PORT || 5001;
@@ -37,3 +38,7 @@ app.listen(PORT, () => {
 sequelize.authenticate()
     .then(() => console.log('Database connected...'))
     .catch((err) => console.log(`Error: ${err.message}`));
+
+    
+// Start the cron job for processing scheduled emails
+require('./utils/emailScheduler'); // Ensure this line is after server setup

@@ -17,38 +17,38 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      smtp_host: {
+      smtpHost: {  // Change this to match the model
         type: Sequelize.STRING,
         allowNull: false,
       },
-      smtp_port: {
+      smtpPort: {  // Change this to match the model
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      smtp_secure: {
+      smtpSecure: {  // Change this to match the model
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
-      smtp_user: {
+      smtpUser: {  // Change this to match the model
         type: Sequelize.STRING,
         allowNull: false,
       },
-      smtp_pass: {
+      smtpPass: {  // Change this to match the model
         type: Sequelize.STRING,
         allowNull: false,
       },
-      max_emails_per_hour: {
+      maxEmailsPerHour: {  // Change this to match the model
         type: Sequelize.INTEGER,
         defaultValue: 100,
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW,
       },
     });

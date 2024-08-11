@@ -12,23 +12,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+    
       organization_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'organizations', // Name of the referenced table
+          model: 'organizations', // Table name
           key: 'id', // Column name in the referenced table
         },
-        onDelete: 'SET NULL', // Action when the referenced row is deleted
+        onDelete: 'CASCADE', // Action when referenced row is deleted
         allowNull: true, // Allow null if no organization is set
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: Sequelize.NOW,
       },
     });

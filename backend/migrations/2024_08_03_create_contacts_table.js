@@ -11,6 +11,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       name: {
         type: Sequelize.STRING,
@@ -18,6 +19,15 @@ module.exports = {
       unsubscribed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
+      },
+      organization_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'organizations', // Table name
+          key: 'id', // Column name in the referenced table
+        },
+        onDelete: 'CASCADE', // Action when referenced row is deleted
+        allowNull: true, // Allow null if no organization is set
       },
       mailing_list_id: {
         type: Sequelize.INTEGER,

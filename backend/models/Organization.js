@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Adjust the path as necessary
+const sequelize = require('../config/db'); // Correct path to your Sequelize instance
 
 const Organization = sequelize.define('Organization', {
   name: {
@@ -44,8 +44,9 @@ const Organization = sequelize.define('Organization', {
     defaultValue: DataTypes.NOW,
   },
 }, {
-  timestamps: false, // Set to false if you don't want Sequelize to automatically manage createdAt and updatedAt
-  tableName: 'organizations', // Ensure the table name matches the migration
+  timestamps: false,
+  tableName: 'organizations',
 });
 
 module.exports = Organization;
+
